@@ -1,2 +1,3 @@
 # IS-114
-Git Hub 2.15.0
+Ventura 13.2.1
+GitHub 2.15.0
