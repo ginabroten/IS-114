@@ -37,3 +37,4 @@ fun flagg(tall):
   kors3 = put-image(rectangle(L.get(rek, 0 + (3 * tall)) * 10, L.get(dim, 2 + (3 * tall)) * 10, "solid", L.get(farger, 2 + (3 * tall))), (L.get(rek, 0 + (3 * tall)) / 2) * 10, (L.get(rek, 1 + (3 * tall)) / 2) * 10, kors2) #lager horistontal stripe
 
 put-image(rectangle(L.get(dim, 2 + (3 * tall)) * 10, L.get(rek, 1 + (3 * tall)) * 10, "solid", L.get(farger, 2 + (3 * tall))), (L.get(rek, 1 + (3 * tall)) / 2) * 10, (L.get(rek, 1 + (3 * tall)) / 2) * 10, kors3) #lager verikal med begge kors kombinert
+end
