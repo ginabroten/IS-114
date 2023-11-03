@@ -4,7 +4,7 @@
 #Først må vi beregne energiforbruket
 
 
-#beregne energibruk - fra forelesningsnotaten får vi oppgitt at energi-per-unit of fuel er 10 kWh, fra en Aftenposten (2022) får vi oppgitt at nordmenn kjører i snitt 11 288 km i året, og biler bruker i snitt 0,5L per mil. Dette gir et snitt på 3.1 mil per dag
+#beregne energibruk - fra forelesningsnotater får vi oppgitt at energi-per-unit of fuel er 10 kWh, fra en Aftenposten (2022) får vi oppgitt at nordmenn kjører i snitt 11 288 km i året, og biler bruker i snitt 0,5L per mil. Dette gir et snitt på 3.1 mil per dag
 
 #distance-travelled-per-day = 3.1
 #distance-per-unit-of-fuel = 0.5
