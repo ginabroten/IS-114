@@ -1,5 +1,5 @@
 use context essentials2021
-# for å lage en funksjon for å tegne de skandinaviske flaggene, har valgt å bruke en rekke funksjoner, og dypere forklaring kommer nedover. 
+# for å lage en funksjon for å tegne de skandinaviske flaggene, har jeg valgt å bruke en rekke funksjoner; bla. lister og put-image.
 
 #velger å bruke lister for å definere alle de ulike rektanglene som flaggene skal bestå av, listene blir importert videre med L. Med lister kan jeg definere alle dimensjonene og størrelsene på rektanglene i flaggene, og enkelt hente de fram senere i koden med L.get
 
