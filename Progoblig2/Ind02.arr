@@ -63,7 +63,7 @@ fun total-energibruk(distance-travelled-per-day, distance-per-unit-of-fuel, ener
 
 end
 
-"Total energibruk vil derfor bli" 
+"Total energibruk vil derfor bli i kWh/dag" 
 
 total-energibruk(3.1, 0.5, 10)
 
