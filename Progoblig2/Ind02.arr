@@ -1,10 +1,8 @@
   
-# Designe og implementere en funksjon, som beregner den totale (estimerte) mengden av energiforbruket til en typisk innbygger i et industrielt land.
-
-#Først må vi beregne energiforbruket
+# Målet med oppgaven er å Designe og implementere en funksjon, som beregner den totale (estimerte) mengden av energiforbruket til en typisk innbygger i et industrielt land.
 
 
-#beregne energibruk - fra forelesningsnotater får vi oppgitt at energi-per-unit of fuel er 10 kWh, fra en Aftenposten (2022) får vi oppgitt at nordmenn kjører i snitt 11 288 km i året, og biler bruker i snitt 0,5L per mil. Dette gir et snitt på 3.1 mil per dag
+#For å beregne energibruk - fra forelesningsnotater får vi oppgitt at energi-per-unit of fuel er 10 kWh, fra en Aftenposten (2022) får vi oppgitt at nordmenn kjører i snitt 11 288 km i året, og biler bruker i snitt 0,5L per mil. Dette gir et snitt på 3.1 mil per dag. 
 
 #distance-travelled-per-day = 3.1
 #distance-per-unit-of-fuel = 0.5
@@ -14,7 +12,7 @@
 
 include shared-gdrive(
 "dcic-2021",
-  "1wyQZj_L0qqV9Ekgr9au6RX2iqt2Ga8Ep")
+  "1wyQZj_L0qqV9Ekgr9au6RX2iqt2Ga8Ep") #oppgave B, og D
 include gdrive-sheets
 include data-source
 import color as C
@@ -45,36 +43,7 @@ energi-to-number("48") is 48
 end
 
 
-
-
-#transformere tabellen slik at innholdet forstår som tall, dette kan jeg gjøre med transformfunkjsonen. Den får det nye navnet kwh-new og har med 62 fremfor 0, og er tall og ikke strings. 
-
-
-
-kwh-new = transform-column(kWh-wealthy-consumer-data, "energi", energi-to-number) 
-
-
-  
-#finne summen av det daglige forbruket, må summere alle verdiene i "energi"-kolonnen. Jeg lager derfor en funskjon som henter fram både funkjsonen for bil hvor jeg kan sette inn tre verdier fra uttrykket, og summen av "energi" kolonnen.
-
-
-fun total-energibruk(distance-travelled-per-day, distance-per-unit-of-fuel, energy-per-unit-of-fuel):
-  energibil(distance-travelled-per-day, distance-per-unit-of-fuel, energy-per-unit-of-fuel) + sum(transform-column(kWh-wealthy-consumer-data, "energi", energi-to-number), "energi")
-
-end
-
-"Total energibruk vil derfor bli i kWh/dag" 
-
-total-energibruk(3.1, 0.5, 10)
-
-
-#ved å skrive inn total-energibruk(3.1, 0.5, 10) i interaksjonsvinduet får jeg svaret 217, som tilsvarer energibruket til en typisk innbygger i et indusrielt land.
-
-
-
-bar-chart(kwh-new, "komponent", "energi")
-
-#her vil det bli 0 i verdi,vi ønsker å få med 62 i tabellen og i figuren. Gjør endringer på energy-to-number funksjonen. Endrer navn til enegry-to-numbers
+#Vi ønsker å få med 62 i tabellen og i figuren, til å lage en tabell og bar-chart med alle tallene. Gjør endringer på energy-to-number funksjonen. Endrer navn til energi-to-numbers.
 
 
 fun energi-to-numbers(str :: String) -> Number:
@@ -88,8 +57,35 @@ energi-to-number("48") is 48
 end
 
 
-kwh-final = transform-column(kWh-wealthy-consumer-data, "energi", energi-to-numbers) 
+#transformerer tabellen slik at kolonnen med energi blir forstått som tall, dette kan jeg gjøre med transform-column funkjsonen. Den får det nye navnet kwh-new
 
-bar-chart(kwh-final, "komponent", "energi")
+
+kwh-new = transform-column(kWh-wealthy-consumer-data, "energi", energi-to-number) # uten bil
+
+kwh-final = transform-column(kWh-wealthy-consumer-data, "energi", energi-to-numbers) #kolonne med bilavtrykket transformeres til tall 
+
+
+"Tabell med forbruksavtrykket til en gjennomsnittlig innbygger i et industrielt land"
+kwh-final
+  
+#For finne summen av det daglige forbruket + summen av energi-bil funksjonen. Vi må summere alle verdiene i "energi"-kolonnen. Jeg lager derfor en funskjon som henter fram både funkjsonen for bil hvor jeg kan sette inn tre verdier fra uttrykket, og summen av "energi" kolonnen.
+
+
+fun total-energibruk(distance-travelled-per-day, distance-per-unit-of-fuel, energy-per-unit-of-fuel):
+  energibil(distance-travelled-per-day, distance-per-unit-of-fuel, energy-per-unit-of-fuel) + sum(transform-column(kWh-wealthy-consumer-data, "energi", energi-to-number), "energi")
+
+end
+
+"Totale forbruksavtrykket for en gjennomsnittlig innbygger i et industrielt land vil derfor bli" 
+
+total-energibruk(3.1, 0.5, 10)
+"kWh/dag"
+
+
+#Vi vil lage en bar-chart for å fremstille tabellen. Bruker den nye kolonnnen hvor energi er omgjort til tall. Her får vi ikke med tallet for bilbruk.
+
+bar-chart(kwh-new, "komponent", "energi") #uten bil
+
+bar-chart(kwh-final, "komponent", "energi") #med bil
 
 #her printes en bar-chart med alle verdiene inne
